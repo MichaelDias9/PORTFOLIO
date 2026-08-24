@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -7,18 +7,26 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    font-family: 'Inter', sans-serif;
+    font-family: 'IBM Plex Mono', monospace;
   }
 
   body {
-    background-color: #0f172a;
-    color: #e2e8f0;
+    background-color: #121210;
+    color: #EDE8DD;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image:
+      repeating-linear-gradient(0deg, rgba(58, 110, 165, 0.08) 0px, rgba(58, 110, 165, 0.08) 1px, transparent 1px, transparent 32px),
+      repeating-linear-gradient(90deg, rgba(58, 110, 165, 0.08) 0px, rgba(58, 110, 165, 0.08) 1px, transparent 1px, transparent 32px);
+    background-attachment: fixed;
+  }
+
+  h1, h2, h3 {
+    font-family: 'Fraunces', serif;
   }
 }
 
 ::selection {
-  background-color: rgba(59, 130, 246, 0.3);
-  color: white;
+  background-color: rgba(216, 84, 42, 0.35);
+  color: #EDE8DD;
 }

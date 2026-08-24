@@ -1,10 +1,11 @@
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
-import { ChevronRight, Code, Briefcase, GraduationCap, Sparkles } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import AttitudeIndicator from '../components/AttitudeIndicator';
+import SectionRail from '../components/SectionRail';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 }
+  visible: { opacity: 1, y: 0 },
 };
 
 const staggerContainer = {
@@ -12,194 +13,241 @@ const staggerContainer = {
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1
-    }
-  }
+      staggerChildren: 0.1,
+    },
+  },
 };
 
+const specFields = [
+  ['ROLE', 'Embedded Systems / Prototyping'],
+  ['FOCUS', 'Sensor Fusion, CAD, Firmware'],
+  ['BASED', 'London, ON'],
+  ['STATUS', 'Open to Work'],
+  ['CONTACT', 'diasm0301@gmail.com'],
+];
+
+const skillGroups = [
+
+  {
+    label: 'Programming & Development',
+    items: [
+      'C',
+      'C++',
+      'CMake',
+      'Python',
+      'SQL',
+      'Git / GitHub',
+      'Claude Code',
+      'Windows / Linux / MacOS',
+    ]
+  },
+
+  {
+    label: 'Embedded & Firmware',
+    items: [
+      'STM32',
+      'STM32CubeIDE',
+      'Bare-Metal Firmware',
+      'FreeRTOS',
+      'Concurrency',
+      'Sensor Drivers',
+      'Interrupts & Timers',
+      'DMA',
+      'Unit Testing / CTest',
+    ]
+  },
+
+  {
+    label: 'Electronics & Controls',
+    items: [
+      'Circuit & PCB Schematics',
+      'Multimeter Debugging',
+      'Analog & Digital Electronics',
+      'PWM',
+      'Servo Control',
+      'Motor & ESC Control',
+      'IMU / Sensor Integration',
+      'PLC Programming',
+      'Industrial Automation',
+    ]
+  },
+
+  {
+    label: 'Design & Prototyping',
+    items: [
+      '3D Printing',
+      'PLA / PETG / TPU',
+      'OrcaSlicer',
+      'FreeCAD',
+      'Parametric CAD',
+      'Custom Parts',
+      'Functional Prototyping',
+      'PCB Soldering',
+      'Wire Crimping',
+    ]
+  },
+
+  {
+    label: 'Communication Protocols',
+    items: [
+      'I²C',
+      'SPI',
+      'UART',
+      'CAN',
+    ]
+  },
+];
+
+const sections = [
+  { id: 'profile', label: '00' },
+  { id: 'experience', label: '01' },
+  { id: 'education', label: '02' },
+  { id: 'skills', label: '03' },
+];
+
 export default function Home() {
-  const navigate = useNavigate();
-
   return (
-    <motion.div
-      initial="hidden"
-      animate="visible"
-      exit={{ opacity: 0, y: -20 }}
-      variants={staggerContainer}
-      className="flex-grow flex flex-col p-4 sm:p-8 max-w-6xl mx-auto w-full gap-6 mt-4 pb-20"
-    >
-      {/* Header Profile Section */}
-      <motion.header variants={fadeIn} className="flex flex-col md:flex-row gap-6 items-start md:items-center justify-between bg-surface/50 p-8 rounded-3xl border border-white/5 backdrop-blur-sm shadow-xl">
-        <div className="flex flex-col gap-2">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary/20 text-primary w-fit text-sm font-medium mb-2">
-            <Sparkles size={16} />
-            <span>Available for Work</span>
+    <>
+      <SectionRail sections={sections} />
+      <motion.div
+        initial="hidden"
+        animate="visible"
+        exit={{ opacity: 0, y: -20 }}
+        variants={staggerContainer}
+        className="flex-grow flex flex-col max-w-6xl mx-auto w-full pb-24 pt-8 px-6 sm:px-10 gap-16 font-mono"
+      >
+        {/* MASTHEAD */}
+        <motion.section id="profile" variants={fadeIn} className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+          <div className="md:col-span-4 flex flex-col gap-6">
+            <AttitudeIndicator />
+            <div className="border border-blueprint/30 p-4 text-xs leading-relaxed">
+              <div className="flex justify-between border-b border-blueprint/20 pb-1 mb-1">
+                <span className="text-muted">NAME</span>
+                <span className="text-cream">MICHAEL DIAS</span>
+              </div>
+              <div className="flex justify-between border-b border-blueprint/20 pb-1 mb-1">
+                <span className="text-muted">ROLE</span>
+                <span className="text-cream">EMBEDDED / MAKER</span>
+              </div>
+              <div className="flex justify-between">
+                <span className="text-muted">STATUS</span>
+                <span className="text-redline">OPEN TO WORK</span>
+              </div>
+            </div>
           </div>
-          <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-2">
-            Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-accent">Michael Dias</span>
-          </h1>
-          <p className="text-lg text-slate-400 max-w-2xl leading-relaxed">
-            Hands-on maker and computer science graduate with strong experience in embedded systems, rapid prototyping, and problem-driven engineering. Comfortable designing in CAD, programming microcontrollers, soldering electronics, and iterating physical systems from concept to functional hardware. Thrives in resource-constrained, build-it-yourself environments.
-          </p>
-        </div>
-      </motion.header>
 
-      {/* Main Grid Layout */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="md:col-span-8 flex flex-col gap-6">
+            <h1 className="font-serif text-5xl md:text-6xl text-cream leading-[1.05]">Michael Dias</h1>
+            <p className="text-sm text-muted leading-relaxed max-w-2xl">
+              Hands-on maker and computer science graduate with a passion for challenging technical problems, strong experience in embedded systems, rapid prototyping, and problem-driven engineering. Comfortable designing in CAD, programming microcontrollers, soldering electronics, and iterating physical systems from concept to functional hardware.
+            </p>
 
-        {/* Left Column - Experience & Education */}
-        <div className="md:col-span-2 flex flex-col gap-6">
+            <table className="text-xs w-full max-w-md">
+              <tbody>
+                {specFields.map(([k, v]) => (
+                  <tr key={k} className="border-b border-blueprint/15">
+                    <td className="py-1.5 pr-4 text-muted w-24 align-top">{k}</td>
+                    <td className="py-1.5 text-cream">{v}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+            
+          </div>
+        </motion.section>
 
-          <motion.section variants={fadeIn} className="bg-surface/30 p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-blue-500/20 flex items-center justify-center text-blue-400">
-                <Briefcase size={20} />
-              </div>
-              <h2 className="text-2xl font-bold text-white">Experience</h2>
-            </div>
-            <div className="flex flex-col gap-8 relative before:absolute before:inset-0 before:ml-[1.2rem] before:-translate-x-px md:before:mx-auto md:before:translate-x-0 before:h-full before:w-0.5 before:bg-gradient-to-b before:from-transparent before:via-slate-700 before:to-transparent">
+        {/* EXPERIENCE */}
+        <motion.section id="experience" variants={fadeIn} className="flex flex-col gap-8">
+          <h2 className="font-serif text-3xl text-cream">Experience</h2>
 
-              {/* Experience Item 1 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group is-active">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-slate-800 text-slate-500 group-[.is-active]:text-emerald-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                  <div className="w-2 h-2 rounded-full bg-emerald-500"></div>
-                </div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-surface/50 p-5 rounded-2xl border border-white/5 transition duration-300 hover:bg-surface hover:shadow-lg">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-white text-lg">Indoor Localization App</h3>
-                    <span className="text-xs font-semibold text-primary bg-primary/10 px-2 py-1 rounded-md">Feb - Aug 2024</span>
-                  </div>
-                  <div className="text-slate-400 text-sm mb-3">Startup</div>
-                  <p className="text-sm text-slate-500">Developed a mobile app combining GPS, pedometer, and Bluetooth beacons. Built a Python (Flask) backend and implemented an Extended Kalman Filter for sensor fusion.</p>
-                </div>
-              </div>
+          <div className="relative">
+            <svg className="w-full h-6" preserveAspectRatio="none">
+              <line x1="0" y1="12" x2="100%" y2="12" stroke="#3A6EA5" strokeWidth="1" />
+              <line x1="0" y1="6" x2="0" y2="18" stroke="#3A6EA5" strokeWidth="1" />
+              <line x1="100%" y1="6" x2="100%" y2="18" stroke="#3A6EA5" strokeWidth="1" />
+            </svg>
 
-              {/* Experience Item 2 */}
-              <div className="relative flex items-center justify-between md:justify-normal md:odd:flex-row-reverse group">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full border-4 border-background bg-slate-800 text-slate-500 shadow shrink-0 md:order-1 md:group-odd:-translate-x-1/2 md:group-even:translate-x-1/2 z-10">
-                  <div className="w-2 h-2 rounded-full bg-slate-500"></div>
-                </div>
-                <div className="w-[calc(100%-4rem)] md:w-[calc(50%-2.5rem)] bg-surface/50 p-5 rounded-2xl border border-white/5 transition duration-300 hover:bg-surface hover:shadow-lg">
-                  <div className="flex justify-between items-start mb-1">
-                    <h3 className="font-bold text-white text-lg">Warehouse Logistics</h3>
-                    <span className="text-xs font-medium text-slate-400 bg-slate-800 px-2 py-1 rounded-md">2021 - Present</span>
-                  </div>
-                  <div className="text-slate-400 text-sm mb-3">The Beer Store - Part Time</div>
-                  <p className="text-sm text-slate-500">Operated electric ride-on pallet jacks in a safety-critical environment. Planned pallet builds and truck loading for efficient deliveries.</p>
-                </div>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-4">
+              <div className="relative pl-6 border-l border-blueprint/30">
+                <div className="text-xs text-redline mb-1">FEB — AUG 2024</div>
+                <h3 className="font-serif text-xl text-cream">Indoor Localization App</h3>
+                <div className="text-xs text-muted mb-2">Startup</div>
+                <p className="text-sm text-muted/90 leading-relaxed">
+                  Developed a mobile app combining pedometer and Bluetooth beacons. Built a Python (Flask) backend and implemented an Extended Kalman Filter for sensor fusion.
+                </p>
+                <Link to="/projects" className="block text-xs text-blueprint hover:text-redline mt-2 w-fit">
+                  → SEE SHEET 02 / P.03
+                </Link>
               </div>
 
-            </div>
-          </motion.section>
-
-          <motion.section variants={fadeIn} className="bg-surface/30 p-8 rounded-3xl border border-white/5 hover:border-white/10 transition-colors">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-purple-500/20 flex items-center justify-center text-purple-400">
-                <GraduationCap size={20} />
-              </div>
-              <h2 className="text-2xl font-bold text-white">Education</h2>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div className="flex justify-between items-center p-4 rounded-2xl bg-surface/50 border border-white/5">
-                <div>
-                  <h3 className="text-lg font-bold text-white">B.Sc. Computer Science</h3>
-                  <p className="text-slate-400 text-sm">Western University</p>
-                </div>
-                <div className="text-right">
-                  <div className="text-sm font-bold text-white">2019 - 2023</div>
-                  <div className="text-xs text-slate-500">Dean's Honor List</div>
-                </div>
+              <div className="relative pl-6 border-l border-blueprint/30">
+                <div className="text-xs text-muted mb-1">2021 — PRESENT</div>
+                <h3 className="font-serif text-xl text-cream">Warehouse Logistics</h3>
+                <div className="text-xs text-muted mb-2">The Beer Store — Part Time</div>
+                <p className="text-sm text-muted/90 leading-relaxed">
+                  Operated electric ride-on pallet jacks in a safety-critical environment. Planned pallet builds and truck loading for efficient deliveries.
+                </p>
               </div>
             </div>
-          </motion.section>
+          </div>
+        </motion.section>
 
-        </div>
+        {/* EDUCATION */}
+        <motion.section id="education" variants={fadeIn} className="flex flex-col gap-4">
+          <h2 className="font-serif text-3xl text-cream">Education</h2>
+          <table className="w-full text-sm">
+            <tbody>
+              <tr className="border-y border-blueprint/20">
+                <td className="py-3 pr-4 text-cream font-medium">B.Sc. Computer Science</td>
+                <td className="py-3 pr-4 text-muted">Western University</td>
+                <td className="py-3 pr-4 text-muted">2019 — 2023</td>
+                <td className="py-3 text-redline text-xs">Dean's Honor List</td>
+              </tr>
+            </tbody>
+          </table>
+        </motion.section>
 
-        {/* Right Column - Skills & Interactive Projects Link */}
-        <div className="md:col-span-1 flex flex-col gap-6">
+        {/* SKILLS */}
+        <motion.section id="skills" variants={fadeIn} className="flex flex-col gap-6">
+          <h2 className="font-serif text-3xl text-cream">Skills</h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8 text-sm">
+            {skillGroups.map(({ label, items }) => (
+              <div key={label}>
+                <div className="text-xs tracking-widest text-blueprint mb-2 border-b border-blueprint/30 pb-1">
+                  {label.toUpperCase()}
+                </div>
+                <ul className="flex flex-col gap-1">
+                  {items.map((item) => (
+                    <li key={item} className="flex items-center gap-2 text-muted">
+                      <span className="w-1.5 h-1.5 bg-redline shrink-0" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </motion.section>
 
-          <motion.div
-            variants={fadeIn}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            onClick={() => navigate('/projects')}
-            className="group cursor-pointer bg-gradient-to-br from-primary/20 to-accent/20 p-8 rounded-3xl border border-white/10 hover:border-white/20 transition-all flex flex-col items-center justify-center text-center gap-4 relative overflow-hidden h-48 shadow-xl shadow-primary/5"
-          >
-            <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-            <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center text-white backdrop-blur-md mb-2 group-hover:scale-110 transition-transform">
-              <Briefcase size={32} />
+        {/* CONTACT */}
+        <motion.section variants={fadeIn} className="flex flex-col gap-2 text-sm">
+          <h2 className="font-serif text-3xl text-cream mb-2">Contact</h2>
+          <div className="border border-blueprint/30 p-4 bg-charcoal flex flex-col gap-1">
+            <div>
+              <span className="text-blueprint">$</span>{' '}
+              <a href="mailto:diasm0301@gmail.com" className="text-cream hover:text-redline">
+                mailto:diasm0301@gmail.com
+              </a>
             </div>
             <div>
-              <h2 className="text-2xl font-bold text-white mb-1">View Projects</h2>
-              <p className="text-sm text-white/70">Click here to see detailed case studies</p>
+              <span className="text-blueprint">$</span> <span className="text-cream">tel:226-977-4245</span>
             </div>
-            <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white opacity-0 group-hover:opacity-100 group-hover:translate-x-1 transition-all">
-              <ChevronRight size={20} />
+            <div>
+              <span className="text-blueprint">$</span> <span className="text-cream">geo:Edgehill Crescent, London, ON</span>
             </div>
-          </motion.div>
-
-          <motion.section variants={fadeIn} className="bg-surface/30 p-8 rounded-3xl border border-white/5">
-            <h2 className="text-2xl font-bold text-white mb-4">Contact</h2>
-            <div className="flex flex-col gap-3 text-slate-400 text-sm">
-              <div className="flex items-center gap-3">
-                <span>📧</span> <a href="mailto:diasm0301@gmail.com" className="hover:text-primary transition-colors">diasm0301@gmail.com</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <span>☎️</span> <span>226-977-4245</span>
-              </div>
-              <div className="flex items-center gap-3">
-                <span>📍</span> <span>Edgehill Crescent, London, ON</span>
-              </div>
-            </div>
-          </motion.section>
-
-          <motion.section variants={fadeIn} className="bg-surface/30 p-8 rounded-3xl border border-white/5 flex-grow">
-            <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 rounded-xl bg-emerald-500/20 flex items-center justify-center text-emerald-400">
-                <Code size={20} />
-              </div>
-              <h2 className="text-2xl font-bold text-white">Skills</h2>
-            </div>
-
-            <div className="flex flex-col gap-4">
-              <div>
-                <h3 className="text-white text-sm font-semibold mb-2">Physical</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Rotary tools', 'Saws', 'Crimpers', 'Soldering'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 rounded bg-surface border border-white/5 text-slate-300 text-xs font-medium cursor-default">{skill}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-white text-sm font-semibold mb-2">Software</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['C/C++', 'CMake', 'Python', 'SQL', 'Concurrency', 'RTOS,', 'Windows', 'Linux', 'Mac'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 rounded bg-surface border border-white/5 text-slate-300 text-xs font-medium cursor-default">{skill}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-white text-sm font-semibold mb-2">Hardware</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['Reading Circuit/PCB Schematics', 'Multimeter Debugging', 'Arduino', 'ESP32', 'IMU Sensors', 'I²C', 'UART', 'PWM', 'Motors'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 rounded bg-surface border border-white/5 text-slate-300 text-xs font-medium cursor-default">{skill}</span>
-                  ))}
-                </div>
-              </div>
-              <div>
-                <h3 className="text-white text-sm font-semibold mb-2">Design</h3>
-                <div className="flex flex-wrap gap-2">
-                  {['FreeCAD', 'Parametric Design', '3D Printing - PLA, PETG', 'OrcaSlicer', 'Functional Prototyping'].map((skill) => (
-                    <span key={skill} className="px-2 py-1 rounded bg-surface border border-white/5 text-slate-300 text-xs font-medium cursor-default">{skill}</span>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </motion.section>
-
-        </div>
-      </div>
-    </motion.div>
+          </div>
+        </motion.section>
+      </motion.div>
+    </>
   );
 }
